@@ -1,0 +1,29 @@
+<h2 class="text-2xl font-bold mb-4">Product List</h2>
+<div class="overflow-x-auto">
+  <table class="w-full table-auto">
+    <thead>
+      <tr class="bg-gray-200">
+        <th class="px-4 py-2">Name</th>
+        <th class="px-4 py-2">Price</th>
+        <th class="px-4 py-2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products" class="odd:bg-gray-100 even:bg-white">
+        <td class="px-4 py-2">{{ product.name }}</td>
+        <td class="px-4 py-2">${{ product.price }}</td>
+        <td class="px-4 py-2 flex">
+          <a *ngIf="product.id" [routerLink]="['/product-edit', product.id]" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
+            <button (click)="editProduct(product.id)">Edit</button>
+          </a>
+          <a *ngIf="product.id" [routerLink]="['/product-delete', product.id]" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+            <button (click)="deleteProduct(product.id)">Delete</button>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<a routerLink="/product-add" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4 inline-block">
+  <button>Add Product</button>
+</a>
